@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
 
-        timeStartingInMilliseconds = sharedPreferences.getLong("TIME START", 660000);
+        timeStartingInMilliseconds = sharedPreferences.getLong("TIME START", 6000);
         timeLeftInMilliSeconds = sharedPreferences.getLong("TIME LEFT", timeStartingInMilliseconds);
         isTimerRunning = sharedPreferences.getBoolean("TIMER RUNNING", false);
 
