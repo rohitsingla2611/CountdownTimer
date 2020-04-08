@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/editTextTimerValue"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorBox"
+        android:hint="@string/enter_timer"
+        android:inputType="phone"
+        android:maxLength="4"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:background="@color/colorBox"
+        android:padding="6dp"
+        android:text="@string/confirm"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTimerValue"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="@+id/editTextTimerValue"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTimerValue" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorBox"
+        android:padding="10dp"
+        android:text="@string/_00_00_00"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/colorText"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="@+id/editTextTimerValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonStartPause"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorBox"
+        android:padding="3dp"
+        android:text="@string/start"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTime"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewTime"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorBox"
+        android:padding="3dp"
+        android:text="@string/reset"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/buttonStartPause"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonStartPause"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStartPause" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
