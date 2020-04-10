@@ -18,6 +18,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String SHARED_PREFS = "sharedPrefs";
+    public static final long MAXIMUM_TIMER_VALUE = 6000 * 60000;
     long backKeyPressedTime;
     int hours, minutes, seconds;
     String strFormatTimeLeft;
@@ -99,18 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonConfirm:
-                String inputValue = editTextTimerValue.getText().toString();
-                if (inputValue.length() == 0) {
-                    Toast.makeText(this, "Please Enter Timer value", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                long inputValueMinutes = Long.parseLong(inputValue) * 60000;
-                if (inputValueMinutes == 0) {
-                    Toast.makeText(this, "Value Can't be Zero", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                setTimerValue(inputValueMinutes);
-                editTextTimerValue.setText("");
+                confirmTimer();
                 return;
             case R.id.buttonStartPause:
                 if (isTimerRunning) {
@@ -124,6 +114,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 resetTimer();
 
 
+        }
+    }
+
+    private void confirmTimer() {
+        String inputValue = editTextTimerValue.getText().toString();
+        if (inputValue.length() == 0) {
+            Toast.makeText(this, "Please Enter Timer value", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        long inputValueMinutes = Long.parseLong(inputValue) * 60000;
+        if (inputValueMinutes == 0) {
+            Toast.makeText(this, "Value Can't be Zero", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (inputValueMinutes < MAXIMUM_TIMER_VALUE) {
+            setTimerValue(inputValueMinutes);
+            editTextTimerValue.setText("");
+        } else {
+            Toast.makeText(this, "Minutes Can't be more than 5999", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -174,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         updateButtons();
 
     }
+
 
     private void updateCountdownText() {
         hours = (int) (timeLeftInMilliSeconds / 1000) / 3600;
