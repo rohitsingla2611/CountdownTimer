@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editTextTimerValue = findViewById(R.id.editTextTimerValue);
         textViewTime = findViewById(R.id.textViewTime);
+
         buttonStartPause = findViewById(R.id.buttonStartPause);
         buttonReset = findViewById(R.id.buttonReset);
         buttonConfirm = findViewById(R.id.buttonConfirm);
