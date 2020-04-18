@@ -66,14 +66,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         updateCountdownText();
         updateButtons();
         if (isTimerRunning) {
+
             timeEndInMilliSeconds = sharedPreferences.getLong("END TIME", 0);
             timeLeftInMilliSeconds = timeEndInMilliSeconds - System.currentTimeMillis();
+
             if (timeLeftInMilliSeconds < 1000) {
+
                 timeLeftInMilliSeconds = 0;
                 isTimerRunning = false;
                 updateButtons();
                 updateCountdownText();
+
             } else {
+
                 startTimer();
             }
         }
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStop() {
         super.onStop();
+
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -92,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putLong("END TIME", timeEndInMilliSeconds);
         editor.putBoolean("TIMER RUNNING", isTimerRunning);
         editor.apply();
+
         if (countDownTimer != null)
             countDownTimer.cancel();
 
@@ -99,10 +106,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
+
             case R.id.buttonConfirm:
                 confirmTimer();
                 return;
+
             case R.id.buttonStartPause:
                 if (isTimerRunning) {
                     pauseTimer();
@@ -121,23 +131,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void confirmTimer() {
         String inputValue = editTextTimerValue.getText().toString();
         if (inputValue.length() == 0) {
+
             Toast.makeText(this, "Please Enter Timer value", Toast.LENGTH_SHORT).show();
             return;
+
         }
         long inputValueMinutes = Long.parseLong(inputValue) * 60000;
         if (inputValueMinutes == 0) {
+
             Toast.makeText(this, "Value Can't be Zero", Toast.LENGTH_SHORT).show();
             return;
+
         }
         if (inputValueMinutes < MAXIMUM_TIMER_VALUE) {
+
             setTimerValue(inputValueMinutes);
             editTextTimerValue.setText("");
+
         } else {
+
             Toast.makeText(this, "Minutes Can't be more than 5999", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void setTimerValue(long setTimeStartingInMilliseconds) {
+
         timeStartingInMilliseconds = setTimeStartingInMilliseconds;
         resetTimer();
     }
@@ -165,12 +183,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         }.start();
+
         isTimerRunning = true;
         updateButtons();
+
     }
 
     @SuppressLint("SetTextI18n")
     private void pauseTimer() {
+
         countDownTimer.cancel();
         isTimerRunning = false;
         updateButtons();
@@ -179,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void resetTimer() {
+
         timeLeftInMilliSeconds = timeStartingInMilliseconds;
         updateCountdownText();
         updateButtons();
@@ -187,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void updateCountdownText() {
+
         hours = (int) (timeLeftInMilliSeconds / 1000) / 3600;
         minutes = (int) (timeLeftInMilliSeconds / 1000) % 3600 / 60;
         seconds = (int) (timeLeftInMilliSeconds / 1000) % 60;
@@ -201,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @SuppressLint("SetTextI18n")
     private void updateButtons() {
+
         if (isTimerRunning) {
 
             editTextTimerValue.setVisibility(View.INVISIBLE);
@@ -209,18 +233,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttonStartPause.setText("PAUSE");
 
         } else {
+
             buttonStartPause.setText("START");
 
             editTextTimerValue.setVisibility(View.VISIBLE);
             buttonConfirm.setVisibility(View.VISIBLE);
+
             if (timeLeftInMilliSeconds == timeStartingInMilliseconds) {
 
                 buttonStartPause.setVisibility(View.VISIBLE);
                 buttonReset.setVisibility(View.INVISIBLE);
+
             } else if (timeLeftInMilliSeconds < 1000) {
+
                 buttonReset.setVisibility(View.VISIBLE);
                 buttonStartPause.setVisibility(View.INVISIBLE);
+
             } else {
+
                 buttonStartPause.setVisibility(View.VISIBLE);
                 buttonReset.setVisibility(View.VISIBLE);
 
@@ -233,12 +263,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         if (backKeyPressedTime + 2000 > System.currentTimeMillis()) {
+
             super.onBackPressed();
             return;
+
         } else {
+
             Toast.makeText(this, "Press again to Exit", Toast.LENGTH_SHORT).show();
+
         }
+
         backKeyPressedTime = System.currentTimeMillis();
+
     }
+
 
 }
